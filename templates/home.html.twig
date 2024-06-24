@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+{% endblock %}
+
+{% block main %}
+    {% for message in messages %}
+        <p><span>({{message.createdat.format("H:i")}})</span> {{message.username}} : {{message.content}}</p>
+    {% endfor %}
+    <form action="index.php?route=postMessage" method="POST">
+        <label for="pseudo" >Pseudo</label>
+        <input type="text"  id="pseudo" name="pseudo">
+        <label for="message" >Message</label>
+        <input type="text"  id="message" name="message">
+        <button type="submit" >Envoyer</button>
+    </form>
+{% endblock %}
