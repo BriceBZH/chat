@@ -15,9 +15,11 @@ class MessageController extends AbstractController
             $message = new Message($_POST['pseudo'], $_POST['message'], DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
             $messageManager = new MessageManager();
             $messageManager->create($message);
-            header("Location: index.php?route=home");
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success', 'message' => 'Message ajouté avec succès']);
         } else {
-            header("Location: index.php?route=home");
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'error', 'message' => 'Données invalides']);
         }   
     }
 }

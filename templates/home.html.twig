@@ -4,14 +4,17 @@
 {% endblock %}
 
 {% block main %}
-    {% for message in messages %}
-        <p><span>({{message.createdat.format("H:i")}})</span> {{message.username}} : {{message.content}}</p>
-    {% endfor %}
-    <form action="index.php?route=postMessage" method="POST">
-        <label for="pseudo" >Pseudo</label>
-        <input type="text"  id="pseudo" name="pseudo">
-        <label for="message" >Message</label>
-        <input type="text"  id="message" name="message">
-        <button type="submit" >Envoyer</button>
+    <div id="messages">
+        {% for message in messages %}
+            <p><span>({{ message.createdAt.format("H:i") }})</span> {{ message.username }} : {{ message.content }}</p>
+        {% endfor %}
+    </div>
+    <form id="message">
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" required>
+        <label for="message">Message</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Envoyer</button>
     </form>
+    <script src="assets/scripts/script.js"></script>
 {% endblock %}
